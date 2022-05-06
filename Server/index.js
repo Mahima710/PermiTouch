@@ -6,6 +6,7 @@ const connectDB = require("./Connection/connection");
 const AuthRoutes = require("./Routes/AuthRoutes");
 const StudentRoutes = require("./Routes/StudentRoutes");
 const SocietyRoutes = require("./Routes/SocietyRoutes");
+const InchargeRoutes = require("./Routes/InchargeRoutes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 app.use(express.json());
@@ -26,6 +27,7 @@ app.use(
   })
 );
 
+app.use("/incharge", InchargeRoutes);
 app.use("/student", StudentRoutes);
 app.use("/society", SocietyRoutes);
 app.use("/", AuthRoutes);
