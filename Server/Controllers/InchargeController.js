@@ -115,69 +115,49 @@ const JudgePermissions = async (req, res) => {
 };
 
 const GetSocietyDetails = async (req, res) => {
-  await Societies.find({}, (error, data) => {
-    if (error) {
-      return console.log(error);
-    }
-    if (data.length === 0) {
-      return res
-        .status(200)
-        .json({ success: true, message: "No Societies Registered" });
-    }
-    return res.status(200).json({ success: true, data: data });
-  });
+  const allsocs = await Societies.find({});
+   if (allsocs.length === 0) {
+     return res
+       .status(201)
+       .json({ success: true, message: "No Societies Registered" });
+   }
+    return res.status(200).json({ success: true, data: allsocs });
 };
 
 const GetStudentDetails = async (req, res) => {
-  await Students.find({}, (error, data) => {
-    if (error) {
-      return console.log(error);
-    }
-    if (data.length === 0) {
-      return res
-        .status(200)
-        .json({ success: true, message: "No Students Registered" });
-    }
-    return res.status(200).json({ success: true, data: data });
-  });
+  const allstudents = await Students.find({});
+  if (allstudents.length === 0) {
+    return res
+       .status(200)
+       .json({ success: true, message: "No Students Registered" });
+  }
+  return res.status(200).json({ success: true, data: allstudents });  
 };
 
 const GetEventDetails = async (req, res) => {
-  await EventPermissions.find({}, (error, data) => {
-    if (error) {
-      return console.log(error);
-    }
-    if (data.length === 0) {
-      return res.status(200).json({ success: true, message: "No Events" });
-    }
-    return res.status(200).json({ success: true, data: data });
-  });
+  const events = await EventPermissions.find({});
+  if (events.length === 0) {
+     return res.status(200).json({ success: true, message: "No Events" });
+  }
+  return res.status(200).json({ success: true, data: events });
 };
 
 const GetRoomDetails = async (req, res) => {
-  await RoomLocation.find({}, (error, data) => {
-    if (error) {
-      return console.log(error);
-    }
-    if (data.length === 0) {
-      return res.status(200).json({ success: true, message: "No rooms added" });
-    }
-    return res.status(200).json({ success: true, data: data });
-  });
+  const rooms = await RoomLocation.find({})
+  if (rooms.length === 0) {
+    return res.status(200).json({ success: true, message: "No rooms added" });
+  }
+  return res.status(200).json({ success: true, data: rooms });
 };
 
 const GetFlexDetails = async (req, res) => {
-  await FlexLocation.find({}, (error, data) => {
-    if (error) {
-      return console.log(error);
-    }
-    if (data.length === 0) {
-      return res
-        .status(200)
-        .json({ success: true, message: "No locations added" });
-    }
-    return res.status(200).json({ success: true, data: data });
-  });
+  const flex = await FlexLocation.find({})
+  if (flex.length === 0) {
+    return res
+      .status(200)
+      .json({ success: true, message: "No locations added" });
+  }
+  return res.status(200).json({ success: true, data: flex });
 };
 
 const EditProfile = async (req, res) => {
