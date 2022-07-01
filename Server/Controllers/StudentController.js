@@ -37,7 +37,7 @@ const CheckPermissions = async (req, res) => {
     return console.log("bleh");
   }
   const Student = await Students.findOne({ token, token });
-  await HostelPermissions.find({ Student: Student._id }, (err, data) => {
+  HostelPermissions.find({ Student: Student._id }, (err, data) => {
     if (err) {
       return console.log(err);
     }
