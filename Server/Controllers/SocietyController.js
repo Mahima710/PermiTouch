@@ -39,7 +39,7 @@ const CheckPermissions = async (req, res) => {
     return console.log("Something went wrong");
   }
   const Soceity = await Societies.findOne({ token: token });
-  await EventPermissions.find({ Soceity: Soceity._id }, (err, data) => {
+  EventPermissions.find({ Soceity: Soceity._id }, (err, data) => {
     if (err) {
       return console.log(err);
     }
